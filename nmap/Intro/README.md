@@ -1,6 +1,6 @@
 # Introduccion
 
-Introduccion a nmap con pequeños comandos para su manejo
+Introduction to nmap with little commands to start playing with it
 
 ## Reverse DNS Lookup
 
@@ -17,11 +17,11 @@ nmap -sS -p- -PS22,80,113,33334 -PA80,113,21000 -PU19000 -PE -A -T4 -oA full-sca
 ### Flags
 
 - `-sS` SYN Scan
-- `-p-` Escaneo de todos los puertos
-- `-PS` Ping Scan con SYN TCP
-- `-PA` Ping Scan con ACK
+- `-p-` All ports scan
+- `-PS` Ping Scan with SYN TCP
+- `-PA` Ping Scan with ACK
 - `-PU` Ping UDP
 - `-PE` ICMP Echo Request
 - `-A` Aggressive scan
 - `-T4` Timming 4
-- `-oA` Guardar todos los tipos de ficheros de la salida de nmap
+- `-oA` Store the output of nmap in all the formats
