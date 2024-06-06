@@ -1,5 +1,5 @@
 # Nmap
 
-Conjunto de notas acerca de nmap sacadas del [libro de nmap](https://nmap.org/book/) separadas por capitulos
+Group of notes about nmap taken from the [nmap book](https://nmap.org/book/) separated by chapters
 
 - [Intro](Intro/README.md)
