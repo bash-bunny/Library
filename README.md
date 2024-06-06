@@ -1,6 +1,6 @@
 # Library
 
-Library with my and [Gabs](https://github.com/itsgabsgarcia) notes about multiple topics and books
+Library with [Gabs](https://github.com/itsgabsgarcia) and my notes about multiple topics and books
 
 ## Networking
 
