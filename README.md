@@ -1,6 +1,6 @@
 # Library
 
-Libreria con notas de multiples temas y libros en colaboracion con [Gabs](https://github.com/itsgabsgarcia)
+Library with my and [Gabs](https://github.com/itsgabsgarcia) notes about multiple topics and books
 
 ## Networking
 
