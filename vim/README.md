@@ -5,4 +5,4 @@ Personal notes about vim (Vi Improved) taken from a lot of sites and different b
 ## Intro
 
 Little tips to start with vim and survive
-- [Vim Survival Guide]()
+- [Vim Survival Guide](Intro/README.md)
