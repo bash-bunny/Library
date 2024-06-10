@@ -12,10 +12,10 @@ Vim works with different modes depending on what you want to do
 | ---- | ---- | ---- |
 | `i` | Command | Change into `-- INSERT --` mode. |
 | `ESC` | `INSERT` | Escape `-- INSERT --` to Command mode |
-| `&larr;` | Both | Move left |
-| `&darr;` | Both | Move down |
-| `&uarr;` | Both | Move up |
-| `&rarr;` | Both | Move right |
+| `←` | Both | Move left |
+| `↓` | Both | Move down |
+| `↑` | Both | Move up |
+| `→` | Both | Move right |
 | `:wq` | Command | Save and quit |
 | `:q!` | Command | Quit without saving |
 | `:w` | Command | Save without exiting |
