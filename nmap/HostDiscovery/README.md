@@ -3,6 +3,7 @@
 Techniques to discover hosts with `nmap`
 
 - [Finding Organizations IP](FindingOrgIp/README.md)
+- [Host Discovery Controls](HostDiscoveryControls/README.md)
 
 ## Hosts Options
 
