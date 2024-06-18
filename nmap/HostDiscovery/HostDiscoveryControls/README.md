@@ -13,6 +13,8 @@ Flags for DNS
 
 ## Control flags
 
+Flags for control how `nmap` scans the hosts
+
 - `sL` - List Scan. Read the list of host and make a reverse DNS query for each of them
   - `nmap -sL www.stanford.edu/28`
   - `nmap -iL recon.txt -sL`
