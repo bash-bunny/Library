@@ -13,3 +13,12 @@ Vim allows you to open other files or urls directly
 
 - `gf` - Opens the file or path under the cursor
 - `gx` - Opens the url in the default browser
+
+# Close Files
+
+- `:wq` - Saves the file with the name you've given and exits vim
+- `:x` - Exits vim but only saves the file if it has any change
+  - `ZZ` - The same as `:x`
+- `:q!` - Exits vim without saving the file
+  - `ZQ` - The same as `:q!`
+- `:qa` - Exits and close all open file
