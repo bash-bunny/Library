@@ -73,10 +73,10 @@ violets are blue
 roses are red
 ```
 
-It's possible to add the language of the code at the end of the 3 backticks
+It's possible to add the language of the code, like python, ruby, etc, at the end of the 3 backticks
 
 ```ruby
-puts "Learning markdown
+puts "Learning markdown"
 ```
 
 To take notes in markdown about markdown use `~~~markdown` or `~~~~markdown` and inside that take notes with markdown notation
