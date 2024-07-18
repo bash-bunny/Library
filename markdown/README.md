@@ -48,8 +48,8 @@ For ordered lists you can use the number 1 followed by a dot `1.` for all points
 
 1. First point of an ordered list
 1. Second point
-  1. First point of the sub-list
-  1. Second point of the sub-list
+    1. First point of the sub-list
+    1. Second point of the sub-list
 
 ## Hard Breaks
 
@@ -115,7 +115,7 @@ This is an [inline link to DeadS3c Library](https://github.com/deads3c/Library)
 
 It's possible to put raw URLs with angle brackets `<>` like <https://github.com/deads3c/Library>. Always use full URLs.
 
-It's possible to put emails and phone numbers too
+It's also possible to put emails and phone numbers too
 - <mailto:example@test.com>
 - <tel:555-555-5555>
 
