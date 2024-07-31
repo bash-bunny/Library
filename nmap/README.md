@@ -4,3 +4,4 @@ Group of notes about nmap taken from the [nmap book](https://nmap.org/book/) sep
 
 - [Intro](Intro/README.md)
 - [Host Discovery](HostDiscovery/README.md)
+- [Port Scanning](PortScanning/README.md)
