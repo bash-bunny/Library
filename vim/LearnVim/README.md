@@ -77,3 +77,7 @@ echo -e "${c}<ip${r}  - ${g}dedent the current paragraph${r}"
 echo -e "${c}!ip${r}  - ${g}send the current paragraph to shell command${r}"
 
 ```
+
+So you get something like this
+
+![Vimcheat](vimcheat.png)
