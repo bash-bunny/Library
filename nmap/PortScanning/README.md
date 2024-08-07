@@ -2,6 +2,8 @@
 
 Different techniques to scan ports and how do it the best way
 
+**Note**: `nmap` store statistics about lose packets to make more or less broadcasts
+
 ## Port States
 
 - Open - The port accept connections
@@ -58,3 +60,44 @@ Nmap allows you to scan IPv6 with the flag `-6`. It works the same as the rest o
 ```bash
 nmap -6 -sV www.eurov6.org
 ```
+
+## Port Scanning Techniques
+
+Different techniques to scan ports with `nmap`
+
+### TCP SYN Scan (-sS)
+
+Default scan in `nmap`, it uses the flag `-sS` and needs a privilege user (usually `root`)
+
+```bash
+nmap -p22,113,119 scanme.nmap.org
+```
+
+- Port Open
+  - Sends a SYN packet
+  - Receive a SYN/ACK
+  - The OS sends a RST because it receive a SYN/ACK that doesn't expect
+- Port Close
+  - Send SYN Packet
+  - Receive RST packet
+- Filtered Port
+  - Send SYN Packet
+  - Doesn't receive any answer, sends another SYN packet
+  - If `nmap` receive ICMP errors like
+    - Type 3
+    - Codes: 1,2,3,9,10 or 13
+
+### TCP Connect Scan (-sT)
+
+It stablish a full TCP connection with the target, it can be used by non-privileged users. It requires more requests and more time than the SYN Scan, to retrieve the same information, and the machines usually logs this information.
+
+It's better to use the SYN Scan instead of this one, because `nmap` has more control of it.
+
+- Open port
+  - Send SYN request
+  - Receive SYN/ACK
+  - Send ACK
+  - Receive the banner of the application
+  - Send RST
+
+The rest is the same as the SYN Scan, but it requires twice as much as requests as SYN Scan
