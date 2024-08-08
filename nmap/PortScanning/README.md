@@ -101,3 +101,48 @@ It's better to use the SYN Scan instead of this one, because `nmap` has more con
   - Send RST
 
 The rest is the same as the SYN Scan, but it requires twice as much as requests as SYN Scan
+
+### UDP Scan (-sU)
+
+It can be combined with the TCP scan (-sS), and do it at the same time
+
+It sends an empty UDP request to the target ports
+
+- Status
+  - Open - Any kind of answer
+  - Open | Filtered - No answer after the broadcast
+  - Closed - ICMP Port unreachable (type 3, code 3)
+
+#### Open vs Filtered
+
+To distinguish open ports and filtered ports use the Version scan with UDP
+
+```bash
+nmap -sUV -F scanme.nmap.org
+```
+
+It's possible to use `hping3` with `traceroute`. Launch a `traceroute` to an open port and a closed one, and the difference in hop numbers gives you a hint on getting if it's open or not
+
+```bash
+hping3 --udp --traceroute -t 8 -p 53 scanme.nmap.org
+hping3 --udp --traceroute -t 8 -p 54 scanme.nmap.org
+```
+
+#### Speeding UPD Scans
+
+UPD scans are pretty slow by default but it's possible to speed it up
+
+- Increase host parallelism
+  - `--min-hostgroup 100` - Scan 100 hosts at the same time
+- Scan popular ports first
+  - `-F` - Scans the 100 most popular ports
+- Specify the intensity of Version detection
+  - `--version-intensity 0` - It makes `nmap` to only try those requests that are more probably to work for a particular port
+- Use the timeout to avoid slow hosts
+  - `--host-timeout 900000` - 15 minutes of timeout, `nmap` stops scanning that host if it didn't end in that time
+- Use the verbose mode to get an approximation of how long is going to take
+  - `-v` - Verbose mode
+
+```bash
+nmap -sUV -T4 -F --version-intensity 0 scanme.nmap.org -v
+```
