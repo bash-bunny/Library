@@ -146,3 +146,21 @@ UPD scans are pretty slow by default but it's possible to speed it up
 ```bash
 nmap -sUV -T4 -F --version-intensity 0 scanme.nmap.org -v
 ```
+
+### TCP FIN, NULL and XMAS
+
+These kind of scans can bypass certain non-stateful firewalls and some routing filters. It works better with Linux machines
+
+#### Null Scan
+- `-sN` - TCP Header to 0
+
+#### FIN Scan
+- `-sF` - FIN bit to 1
+
+#### Xmas Scan
+- `-sX` - Put 1 into the bits of FIN, PSH, URG
+
+Answers codes
+- open | filtered - There is no response
+- closed - The server answers with TCP RST packet
+- filtered - ICMP unreachable error (type 3, code 1,2,3,9,10 or 13)
