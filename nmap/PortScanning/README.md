@@ -151,6 +151,11 @@ nmap -sUV -T4 -F --version-intensity 0 scanme.nmap.org -v
 
 These kind of scans can bypass certain non-stateful firewalls and some routing filters. It works better with Linux machines
 
+**Answers Codes**:
+- `filtered` - `ICMP` unreachable error (type 3, code 1,2,3,9,10 or 13)
+- `closed` - Answer with `TCP RST` packet
+- `open | filtered` - There is no response
+
 #### Null Scan
 - `-sN` - TCP Header to 0
 
@@ -160,7 +165,43 @@ These kind of scans can bypass certain non-stateful firewalls and some routing f
 #### Xmas Scan
 - `-sX` - Put 1 into the bits of FIN, PSH, URG
 
-Answers codes
-- open | filtered - There is no response
-- closed - The server answers with TCP RST packet
-- filtered - ICMP unreachable error (type 3, code 1,2,3,9,10 or 13)
+
+### Custom Scan Types
+
+It's possible to customize what flags `nmap` uses with `--scanflags`, for example `--scanflags URGACKPSHRSTSYNFIN` uses all the flags (despite isn't useful)
+
+#### Examples
+
+```bash
+# Custom SYN/FIN Scan that can bypass some firewalls
+nmap -sS --scanflags SYNFIN -T4 www.google.com
+
+# The same but with URG, PSH or RST
+nmap -sS --scanflags SYNURG scanme.nmap.org
+nmap -sS --scanflags SYNURGPSHFIN scanme.nmap.org
+nmap -sS --scanflags SYNRST scanme.nmap.org
+
+# PSH flag with the FIN, NULL or XMAS scan
+nmap -sF --scanflags PSH 192.168.1.1
+```
+
+### TCP ACK Scan (-sA)
+
+It's used to map firewall rules and determine if they are stateful or not, and what ports are filtered
+
+**Port States**:
+- `unfiltered` - `TCP RST` response
+- `filtered` - There is no response or `ICMP unreachable` error (type 3, code 1,2,3,9,10 or 13)
+
+### TCP Window Scan (-sW)
+
+It acts like the `ACK` Scan but to find what ports are open and what are closed, given that open ports answers with a window size more than 0. This scan only works on some machines
+
+**Answers codes**:
+- `open` - `TCP RST` with the window size
+- `closed` - `TCP RST` with window size 0
+- `filtered` - There is no answer or `ICMP unreachable` error (type 3, code 1,2,3,9,10 or 13)
+
+```bash
+nmap -sW -T4 scanme.nmap.org
+```

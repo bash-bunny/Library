@@ -57,6 +57,6 @@ Resources to learn vim from the terminal
 
 ## Working with Files
 
-Commands to play with files inside vim
+Commands to open, write, save and edit files
 
 - [Working with Files](WorkWithFiles/README.md)
