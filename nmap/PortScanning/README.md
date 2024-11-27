@@ -61,6 +61,21 @@ Nmap allows you to scan IPv6 with the flag `-6`. It works the same as the rest o
 nmap -6 -sV www.eurov6.org
 ```
 
+## Tweaking Speed and parallelization
+
+Nmap has some options to manage the network conditioning and parallelization, to speed things up.
+
+**Speed and retransmissions**:
+- `--min-rate 100` - Minimum rate at which nmap sends packets is 100
+- `--max-retries 0` - Nmap is not going to try to re-send packets that fails
+
+**Host and Port Parallelization**:
+- `--min-hostgroup` - Define the minimum number of hosts to scan in parallel
+- `--min-parallelism` - Defines the minimum number of ports to scan at the same time
+- `-T4` - Define a series of options to speed up, it goes from 0 (slowest) to 5 (fastest)
+- `--max-rtt-timeout` - Maximum RTT
+
+
 ## Port Scanning Techniques
 
 Different techniques to scan ports with `nmap`
@@ -204,4 +219,47 @@ It acts like the `ACK` Scan but to find what ports are open and what are closed,
 
 ```bash
 nmap -sW -T4 scanme.nmap.org
+```
+
+### TCP Maimon Scan (-sM)
+
+Sends packets with the flags FIN/ACK, it was useful before, now most of the machines answers with all ports closed
+
+```bash
+nmap -sM -T4 scanme.nmap.org
+```
+
+### TCP Idle Scan (-sI)
+
+It allows you to scan a machine without sending any packet to that particular machine, it makes use of a "zombie" machine, spoofing their packets. To find a good candidate for a zombie we can use the `-O` and `-v` flags, which gives us the ID (`Incremental | Broken little-endian incremental` are good candidates). By default it uses the port 80, it's possible to change it with `:port`
+
+```bash
+# Scan www.ria.com using kiosk.adobe.com without ping to avoid leak our IP
+nmap -Pn -p- -sI kiosk.adobe.com www.ria.com
+# Change the default port and use the port 113
+nmap -Pn -p- -sI kiosk.adobe.com:113 www.ria.com
+```
+
+### Ip Protocol Scan (-sO)
+
+It's used to find what kind of protocols (TCP, ICMP, IGMP, etc) supports the target machine. It's usually used to find out what kind of machines are behind, typically uses TCP, UDP and ICMP (maybe IGMP), but *routers* uses GRE and EGP, *firewalls* and *VPNs* uses IPSec and SWIPE
+
+**Answers**:
+- `open` - Any response of any protocol
+- `closed` - ICMP protocol unreachable error
+- `filtered` - Other ICMP errors
+- `open|filtered` - There is no response
+
+```bash
+nmap -sO 192.168.1.1
+```
+### TCP FTP Bounce Scan (-b)
+
+It makes use of a machine with ftp to make the scans, the machine with the ftp service sends files to other machines to determine if the ports are open or not. It's useful to bypass firewalls, but it's usually patched, so don't usually works.
+
+```bash
+# It tries to connect to the ftp server with the credentials anonymous:-wwwwuser@
+nmap -Pn -b ftp.microsoft.com google.com
+# It uses the credentials user:password on the ftp.microsoft.com on port 121
+nmap -Pn -b user:password@ftp.microsoft.com:121 google.com
 ```
