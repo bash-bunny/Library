@@ -6,3 +6,4 @@ Group of notes about nmap taken from the [nmap book](https://nmap.org/book/) sep
 - [Host Discovery](HostDiscovery/README.md)
 - [Port Scanning](PortScanning/README.md)
 - [Optimizing Nmap](Optimizing/README.md)
+- [Service Detection](ServiceDetection/README.md)
