@@ -8,3 +8,4 @@ Group of notes about nmap taken from the [nmap book](https://nmap.org/book/) sep
 - [Optimizing Nmap](Optimizing/README.md)
 - [Service Detection](ServiceDetection/README.md)
 - [Operating System Detection](OSDetection/README.md)
+- [Scripting Engine](ScriptingEngine/README.md)
